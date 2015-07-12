@@ -4,8 +4,8 @@ class Candidate
   @@next_candidate_id = 1
   # All are stored in a class "factory" list for easy
   # storage and selection
-  @@candidate_list = {}
-  attr_accessor :name, :party, :id, :next_candidate_id, :candidate_list
+  # @@candidate_list = {}
+  attr_accessor :name, :party, :id# :next_candidate_id, :candidate_list
 
   def initialize(name, party)
     @name = name
@@ -16,13 +16,13 @@ class Candidate
     @@next_candidate_id += 1
     # Each instance is stored into the "factory"
     # hash (@@candidate_list) with the key [@id]
-    @@candidate_list[@id] = self
+    # @@candidate_list[@id] = self
   end
 
   # Gets the @@candidate_list hash
-  def self.candidate_list
-    @@candidate_list
-  end
+  # def self.candidate_list
+  #   @@candidate_list
+  # end
 
   # Converts candidate instance @id number and @name
   # into a user friendly string
@@ -36,29 +36,29 @@ class Candidate
 
   # Converts candidate "factory" hash into a user friendly
   # list of candidate id's and names
-  def self.show_names
-    @@candidate_list.each do |key, value|
-      puts "#{key} :#{value.name_to_s}"
-    end
-  end
+  # def self.show_names
+  #   @@candidate_list.each do |key, value|
+  #     puts "#{key} :#{value.name_to_s}"
+  #   end
+  # end
 
   # Converts candidate "factory" hash into a user friendly
   # list of candidate id's and names
-  def self.show_party_affiliation
-    @@candidate_list.each do |key, value|
-      puts "#{key}: #{value.party_to_s}"
-    end
-  end
+  # def self.show_party_affiliation
+  #   @@candidate_list.each do |key, value|
+  #     puts "#{key}: #{value.party_to_s}"
+  #   end
+  # end
 
-  def self.show_all_info
-    @@candidate_list.each do |key, value|
-      puts <<-END
-      #{key}: #{value.name_to_s}
-         #{value.party_to_s}
-
-      END
-    end
-  end
+  # def self.show_all_info
+  #   @@candidate_list.each do |key, value|
+  #     puts <<-END
+  #     #{key}: #{value.name_to_s}
+  #        #{value.party_to_s}
+  #
+  #     END
+  #   end
+  # end
 
   # def change_next_id(next_id)
   #   @@next_candidate_id = next_id
@@ -75,6 +75,8 @@ class Candidate
   # end
 
 end
+
+
 #
 # Candidate.new("George Bush", "Rep")
 # Candidate.new("John Kerry", "Dem")

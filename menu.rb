@@ -1,6 +1,13 @@
 require './class_candidate'
 require './class_voter'
 
+
+
+
+# DRY up with the 2 classes and make
+
+
+
 #################################################
 # What does it need?
 #  add branch

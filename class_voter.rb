@@ -4,8 +4,8 @@ class Voter
   @@next_voter_id = 1
   # All are stored in a class "factory" list for easy
   # storage and selection
-  @@voter_list = {}
-  attr_accessor :name, :politics, :id, :next_voter_id, :voter_list
+  # @@voter_list = {}
+  attr_accessor :name, :politics, :id  # , :next_voter_id, :voter_list
 
   # Set up so it will initialize, with the user's choice
   # of name and politics
@@ -19,7 +19,7 @@ class Voter
     @@next_voter_id += 1
     # Each instance is stored into the "factory"
     # hash (@@voter_list) with the key [@id]
-    @@voter_list[@id] = self
+    # @@voter_list[@id] = self
   end
 
   # Gets the @@voter_list hash
@@ -39,29 +39,29 @@ class Voter
 
   # Converts Voter "factory" hash into a user friendly
   # list of Voter id's and names
-  def self.show_names
-    @@voter_list.each do |key, value|
-      puts "#{key} :#{value.name_to_s}"
-    end
-  end
+  # def self.show_names
+  #   @@voter_list.each do |key, value|
+  #     puts "#{key} :#{value.name_to_s}"
+  #   end
+  # end
 
   # Converts Voter "factory" hash into a user friendly
   # list of Voter id's and names
-  def self.show_politic_views
-    @@voter_list.each do |key, value|
-      puts "#{key}: #{value.name_to_s}"
-    end
-  end
-
-  def self.show_all_info
-    @@voter_list.each do |key, value|
-      puts <<-END
-      #{key}: #{value.name_to_s}
-         #{value.politics_to_s}
-
-      END
-    end
-  end
+  # def self.show_politic_views
+  #   @@voter_list.each do |key, value|
+  #     puts "#{key}: #{value.name_to_s}"
+  #   end
+  # end
+  #
+  # def self.show_all_info
+  #   @@voter_list.each do |key, value|
+  #     puts <<-END
+  #     #{key}: #{value.name_to_s}
+  #        #{value.politics_to_s}
+  #
+  #     END
+  #   end
+  # end
 
   # def change_next_id(next_id)
   #   @@next_voter_id = next_id
