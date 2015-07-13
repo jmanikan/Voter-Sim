@@ -5,23 +5,9 @@ require './class_voter'
 
 #################################################
 # What does it need?
-#  add branch
-# =>        make candidate skeleton done
-# =>        make voter skeleton done
-#  update branch
-# =>        update candidate skeleton done
-# =>        update voter skeleton done
-#  display branch
-# =>        display all done
-# =>          display candidates done
-# =>          display voters done
-# =>  This point and below needs work
-#  delete branch
-# =>        delete candidate
-# =>        delete branch
 #
-#  Cleaning up and removing logging and placeholder TEXT
-#  Just make it friendly
+# 1. Add limited selection for parties.
+# 2. Add limited selection for politics.
 ##################################################
 # I've split the organization of this into the 4
 # branches that you see above. I'm not sure how your
@@ -54,6 +40,7 @@ class ElectionOffice
     (2) to update.
     (3) to display.
     (4) to delete.
+
     END
     choose_options
   end
@@ -312,6 +299,87 @@ class ElectionOffice
 
       END
       i = i + 1
+    end
+  end
+
+  ################################
+  ########   Delete    ###########
+  ################################
+
+  def delete_from_which_list
+    puts <<-END
+    Which list would you like to delete from?
+    (1) Candidates
+    (2) Voters
+
+    END
+    choice = gets.chomp.to_i
+    case choice
+    when 1 # Candidates
+      puts "I don't blame you."
+      delete_candidate
+    when 2 # Voters
+      delete_voter
+    else
+      puts "Sorry, your input was invalid.\n"
+      delete_from_which_list
+    end
+  end
+
+  def delete_candidate
+    show_all_candidates
+    puts "Who would you like to delete?"
+    choice = (gets.chomp.to_i - 1)
+    if choice < 0
+      puts "Sorry, your input was invalid.\n"
+      delete_candidate
+    elsif choice > @candidate_list.length
+      puts "Sorry, your input was invalid.\n"
+      delete_candidate
+    else
+      deleted_name = @candidate_list[choice].name
+      @candidate_list.delete_at(choice)
+      puts "#{deleted_name} has been deleted.\n"
+    end
+    delete_another_or_main_menu
+  end
+
+
+  def delete_voter
+    show_all_voters
+    puts "Who would you like to delete?"
+    choice = (gets.chomp.to_i - 1)
+    if choice < 0
+      puts "Sorry, your input was invalid.\n"
+      delete_voter
+    elsif choice > @voter_list.length
+      puts "Sorry, your input was invalid.\n"
+      delete_voter
+    else
+      deleted_name = @voter_list[choice].name
+      @voter_list.delete_at(choice)
+      puts "#{deleted_name} has been deleted.\n"
+    end
+    delete_another_or_main_menu
+  end
+
+
+  def delete_another_or_main_menu
+    puts <<-END
+    Would you like to delete another or return to the main menu?
+    (1) Delete another
+    (2) Main menu
+
+    END
+    choice = gets.chomp
+    case choice
+    when "1"
+      delete_from_which_list
+    when "2"
+      main_menu_options
+    else
+      puts "Sorry, your input was invalid."
+      delete_another_or_main_menu
     end
   end
 
