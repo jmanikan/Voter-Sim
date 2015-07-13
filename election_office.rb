@@ -1,17 +1,15 @@
 require './class_candidate'
 require './class_voter'
+require './votertest_mod_v1'
 
 
 
 #################################################
 # What does it need?
 #
-# It needs the @candidate_list and @voter_list to
-# to be passed to the engine as arguments, preferably
-# as arguments in the initialization of the new engine class
 #
-# Bug in delete section when trying to delete someone without
-# having made anyone.
+#
+# Bug in the delete section when trying to delete someone from an empty list
 ##################################################
 # I've split the organization of this into the 4
 # branches that you see above.
@@ -28,8 +26,11 @@ class ElectionOffice
     @voter_list = []
     puts <<-END
 
-    FRIENDLY INTRO TEXT ABOUT THE SIM
-    BRIEF DESCRIPTION ABOUT IT AND WHAT TO DO
+
+    Welcome to the Election Simulator!
+
+    It's election season in Florida
+
 
     END
     # main_menu_options
@@ -61,10 +62,8 @@ class ElectionOffice
     choice = gets.chomp.downcase
     case choice
     when '1' # Add new person
-      puts "In choose_options, going to choose_type."
       choose_type
     when '2' # Update person
-      puts "In choose_options, going to update_what_type"
       # Goes to a choice method to update_voter, update_candidate
       update_what_type
     when '3' # Display groups
@@ -76,13 +75,51 @@ class ElectionOffice
       # or a candidate from the game.
       delete_from_which_list
     when '5' # Run Election!
-      # Run Election!
+      election = ElectionTime.new(@voter_list, @candidate_list)
+      election.campaign
+      puts "What an exciting race! Thank you for using the Election Simulator!"
     when 'quit' # Quit Game
       exit
+    when 'hidden'
+      load_example_groups
     else
       puts "Sorry, your input was invalid.\n'1' for add, '2' for update, '3' for display, '4' for delete.\nCalling main_menu_options"
       choose_options
     end
+  end
+
+  # For Presentation purposes
+  def load_example_groups
+    @voter_list = [
+      Voter.new("Juvenal", "Progressive"),
+      Voter.new("Angel", "Conservative"),
+      Voter.new("Paul", "Libertarian"),
+      Voter.new("Adam", "Massachussetts Democrat"),
+      Voter.new("Mashon", "Independent"),
+      Voter.new("Jeff", "Conservative"),
+      Voter.new("Patrick", "Progressive"),
+      Voter.new("Stevie", "Progressive"),
+      Voter.new("Juan", "Independent"),
+      Voter.new("Christopher", "Massachussetts Democrat"),
+      Voter.new("Ravi", "Libertarian"),
+      Voter.new("Joann", "Conservative"),
+      Voter.new("Manny", "Independent"),
+      Voter.new("Damon", "Progressive"),
+      Voter.new("Diego", "Progressive"),
+      Voter.new("Juha", "Libertarian"),
+      Voter.new("Stephen", "Massachussetts Democrat"),
+      Voter.new("Alaa", "Conservative"),
+      Voter.new("Jose", "Independent"),
+      Voter.new("Erin", "Conservative"),
+      Voter.new("Johanna", "Massachussetts Democrat"),
+    ]
+
+    @candidate_list = [
+      Candidate.new("Rick Scott", "Republican"),
+      Candidate.new("Charlie Crist", "Democratic")
+    ]
+
+    main_menu_options
   end
 
   ################################
@@ -354,6 +391,9 @@ class ElectionOffice
     main_menu_options
   end
 
+  # Iterates over the @candidate_list and @voter_list to
+  # display all the candidates,
+  # with their names and party or politics
   def show_everyone
     puts "Candidates:"
     show_all_candidates
@@ -361,6 +401,8 @@ class ElectionOffice
     show_all_voters
   end
 
+  # Iterates over the @candidate_list to display all the candidates,
+  # with their names and party affiliations
   def show_all_candidates
     i = 1
     @candidate_list.each do |key|
@@ -373,6 +415,8 @@ class ElectionOffice
     end
   end
 
+  # Iterates over the @voter_list to display all the voters,
+  # with their names and political beliefs
   def show_all_voters
     i = 1
     @voter_list.each do |key|
@@ -468,19 +512,3 @@ class ElectionOffice
 
 
 end
-
-# Testing purposes below this point
-
-      #
-      # Candidate.new("George Bush", "Rep")
-      # Candidate.new("John Kerry", "Dem")
-      # Voter.new("Juvenal", "Libertarian")
-      # Voter.new("Joann", "Libertarian")
-      # Voter.new("Stevie", "Conservative")
-      # Voter.new("Chris", "Conservative")
-      # Voter.new("Juan", "Independent")
-      # Voter.new("Jeff", "Independent")
-      # Voter.new("Robert", "Progressive")
-      # Voter.new("Jose", "Progressive")
-      # Voter.new("Pat", "Mass Dem")
-      # Voter.new("Damon", "Mass Dem")
