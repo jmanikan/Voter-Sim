@@ -1,34 +1,37 @@
 require './election_office'
 #require './class_candidate'
 
-class ElectionOffice
-  attr_accessor :voter_list, :candidate_list
-
-  def initialize
-    @candidate_list = [
-      Candidate.new("George Bush", "Rep"),
-      Candidate.new("John Kerry", "Dem")
-    ]
-    @voter_list = [
-      Voter.new("Juvenal", "Libertarian"),
-      Voter.new("Joann", "Libertarian"),
-      Voter.new("Stevie", "Conservative"),
-      Voter.new("Chris", "Conservative"),
-      Voter.new("Juan", "Independent"),
-      Voter.new("Jeff", "Independent"),
-      Voter.new("Robert", "Progressive"),
-      Voter.new("Jose", "Progressive"),
-      Voter.new("Pat", "Mass Dem"),
-      Voter.new("Damon", "Mass Dem")
-    ]
-  end
-
-
-
-end
-
+# class ElectionOffice
+#   attr_accessor :voter_list, :candidate_list
 #
-ElectionOffice.new
+#   def initialize
+#     @candidate_list = [
+#       Candidate.new("George Bush", "Rep"),
+#       Candidate.new("John Kerry", "Dem")
+#     ]
+#     @voter_list = [
+#       Voter.new("Juvenal", "Libertarian"),
+#       Voter.new("Joann", "Libertarian"),
+#       Voter.new("Stevie", "Conservative"),
+#       Voter.new("Chris", "Conservative"),
+#       Voter.new("Juan", "Independent"),
+#       Voter.new("Jeff", "Independent"),
+#       Voter.new("Robert", "Progressive"),
+#       Voter.new("Jose", "Progressive"),
+#       Voter.new("Pat", "Mass Dem"),
+#       Voter.new("Damon", "Mass Dem")
+#     ]
+#   end
+#
+#
+#
+# end
+
+new_game = ElectionOffice.new
+new_game.main_menu_options
+
+
+# ElectionOffice.new
 
 
 
