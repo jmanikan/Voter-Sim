@@ -9,6 +9,9 @@ require './class_voter'
 # It needs the @candidate_list and @voter_list to
 # to be passed to the engine as arguments, preferably
 # as arguments in the initialization of the new engine class
+#
+# Bug in delete section when trying to delete someone without
+# having made anyone.
 ##################################################
 # I've split the organization of this into the 4
 # branches that you see above.
@@ -71,7 +74,7 @@ class ElectionOffice
     when '4' # Delete person :'(
       # Goes to a method to choose to remove either a voter
       # or a candidate from the game.
-      delete
+      delete_from_which_list
     when '5' # Run Election!
       # Run Election!
     when 'quit' # Quit Game
@@ -468,16 +471,16 @@ end
 
 # Testing purposes below this point
 
-
-      Candidate.new("George Bush", "Rep")
-      Candidate.new("John Kerry", "Dem")
-      Voter.new("Juvenal", "Libertarian")
-      Voter.new("Joann", "Libertarian")
-      Voter.new("Stevie", "Conservative")
-      Voter.new("Chris", "Conservative")
-      Voter.new("Juan", "Independent")
-      Voter.new("Jeff", "Independent")
-      Voter.new("Robert", "Progressive")
-      Voter.new("Jose", "Progressive")
-      Voter.new("Pat", "Mass Dem")
-      Voter.new("Damon", "Mass Dem")
+      #
+      # Candidate.new("George Bush", "Rep")
+      # Candidate.new("John Kerry", "Dem")
+      # Voter.new("Juvenal", "Libertarian")
+      # Voter.new("Joann", "Libertarian")
+      # Voter.new("Stevie", "Conservative")
+      # Voter.new("Chris", "Conservative")
+      # Voter.new("Juan", "Independent")
+      # Voter.new("Jeff", "Independent")
+      # Voter.new("Robert", "Progressive")
+      # Voter.new("Jose", "Progressive")
+      # Voter.new("Pat", "Mass Dem")
+      # Voter.new("Damon", "Mass Dem")
